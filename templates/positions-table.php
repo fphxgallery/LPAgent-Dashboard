@@ -73,8 +73,12 @@ $count = is_array( $positions ) ? count( $positions ) : 0;
 					$dpr           = $pos['dpr']             ?? null;
 					$in_range      = $pos['inRange']         ?? null;
 					$created_at    = $pos['createdAt']       ?? null;
-					$logo0         = $pos['token0Info']['logo'] ?? '';
-					$logo1         = $pos['token1Info']['logo'] ?? '';
+					$token0_addr     = $pos['token0'] ?? '';
+					$token1_addr     = $pos['token1'] ?? '';
+					$logo0           = $token0_addr ? 'https://orbmarkets.io/token/' . $token0_addr . '/logo?from=token' : '';
+					$logo1           = $token1_addr ? 'https://orbmarkets.io/token/' . $token1_addr . '/logo?from=token' : '';
+					$logo0_fallback  = $pos['logo0'] ?? '';
+					$logo1_fallback  = $pos['logo1'] ?? '';
 
 					$pnl_class = '';
 					if ( is_numeric( $pnl_val ) ) {
@@ -85,11 +89,8 @@ $count = is_array( $positions ) ? count( $positions ) : 0;
 					<!-- Pair -->
 					<td>
 						<div class="lpm-token-pair">
-							<?php if ( $logo0 ) : ?>
-								<img src="<?php echo esc_url( $logo0 ); ?>" alt="" class="lpm-token-logo" width="16" height="16" loading="lazy" onerror="this.style.display='none'" />
-							<?php endif; ?>
-							<?php if ( $logo1 ) : ?>
-								<img src="<?php echo esc_url( $logo1 ); ?>" alt="" class="lpm-token-logo lpm-token-logo--second" width="16" height="16" loading="lazy" onerror="this.style.display='none'" />
+							<?php if ( $logo0 || $logo0_fallback ) : ?>
+								<img src="<?php echo esc_url( $logo0 ?: $logo0_fallback ); ?>" alt="" class="lpm-token-logo" width="16" height="16" loading="lazy" onerror="this.onerror=null;this.src='<?php echo esc_url( $logo0_fallback ); ?>'" />
 							<?php endif; ?>
 							<span><?php echo esc_html( $pair_name ); ?></span>
 						</div>
