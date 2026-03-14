@@ -1,0 +1,382 @@
+/* ==========================================================================
+   LP Metrics Plugin — Glassmorphism styles (fphx-theme compatible)
+   Uses the site's Space Grotesk font, purple/pink accent palette, and
+   glassmorphism card treatment.
+   ========================================================================== */
+
+:root {
+	--lpm-purple:     #7c3aed;
+	--lpm-pink:       #ec4899;
+	--lpm-gradient:   linear-gradient(135deg, #7c3aed, #ec4899);
+	--lpm-glass-bg:   rgba(124, 58, 237, 0.04);
+	--lpm-glass-border: rgba(124, 58, 237, 0.15);
+	--lpm-text:       #1e293b;
+	--lpm-text-dim:   #475569;
+	--lpm-green:      #059669;
+	--lpm-red:        #dc2626;
+	--lpm-radius:     16px;
+	--lpm-radius-sm:  10px;
+}
+
+/* ---- Wrapper ---- */
+.lpm-wrap {
+	font-family: 'Space Grotesk', 'Inter', sans-serif;
+	color: var(--lpm-text);
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	padding: 8px 0;
+}
+
+/* ---- Glass base ---- */
+.lpm-glass {
+	background: var(--lpm-glass-bg);
+	border: 1px solid var(--lpm-glass-border);
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+	border-radius: var(--lpm-radius);
+	padding: 20px 24px;
+}
+
+/* ---- Overview header ---- */
+.lpm-overview__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 12px;
+	padding: 16px 20px;
+}
+
+.lpm-overview__wallet {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.lpm-label {
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--lpm-text-dim);
+	font-weight: 600;
+}
+
+.lpm-address {
+	font-size: 15px;
+	font-weight: 700;
+	letter-spacing: 0.03em;
+	background: var(--lpm-gradient);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+.lpm-overview__meta {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+/* ---- Badges ---- */
+.lpm-badge {
+	display: inline-block;
+	padding: 4px 12px;
+	border-radius: 99px;
+	font-size: 12px;
+	font-weight: 600;
+	background: var(--lpm-gradient);
+	color: #fff;
+}
+
+.lpm-badge--dim {
+	background: rgba(255, 255, 255, 0.1);
+	color: var(--lpm-text-dim);
+}
+
+/* ---- Stats grid ---- */
+.lpm-stats-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 16px;
+}
+
+/* ---- Stat card ---- */
+.lpm-stat-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	gap: 4px;
+	padding: 24px 20px;
+	transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.lpm-stat-card:hover {
+	transform: translateY(-2px);
+	border-color: rgba(124, 58, 237, 0.4);
+}
+
+.lpm-stat-card__label {
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--lpm-text-dim);
+	font-weight: 600;
+}
+
+.lpm-stat-card__value {
+	font-size: 28px;
+	font-weight: 800;
+	line-height: 1.2;
+}
+
+.lpm-stat-card__sub {
+	font-size: 12px;
+	color: var(--lpm-text-dim);
+}
+
+.lpm-stat-card__sub-inline {
+	font-size: 14px;
+	font-weight: 400;
+	color: var(--lpm-text-dim);
+}
+
+/* ---- Positive / Negative colours ---- */
+.lpm-positive,
+.lpm-positive .lpm-stat-card__value {
+	color: var(--lpm-green) !important;
+	-webkit-text-fill-color: var(--lpm-green) !important;
+}
+
+.lpm-negative,
+.lpm-negative .lpm-stat-card__value {
+	color: var(--lpm-red) !important;
+	-webkit-text-fill-color: var(--lpm-red) !important;
+}
+
+/* ---- Combined card (revenue chart + positions + date table) ---- */
+.lpm-combined {
+	padding: 24px;
+}
+
+.lpm-divider {
+	border: none;
+	border-top: 1px solid var(--lpm-glass-border);
+	margin: 24px 0;
+}
+
+/* ---- Revenue section ---- */
+.lpm-revenue {
+	padding: 0;
+}
+
+.lpm-section-title {
+	margin: 0 0 20px;
+	font-size: 18px;
+	font-weight: 700;
+	background: var(--lpm-section-title-color, var(--lpm-gradient));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	color: var(--lpm-section-title-color, transparent);
+}
+
+/* ---- Chart ---- */
+.lpm-chart-wrap {
+	position: relative;
+	width: 100%;
+	height: 280px;
+	margin-bottom: 24px;
+}
+
+.lpm-revenue-chart {
+	width: 100% !important;
+	height: 100% !important;
+}
+
+/* ---- Table ---- */
+
+/* Reset any theme-level borders on table elements inside our wrapper */
+.lpm-wrap table,
+.lpm-wrap table th,
+.lpm-wrap table td {
+	border: none;
+	box-shadow: none;
+	background: none;
+}
+
+.lpm-table-wrap {
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.lpm-table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 13px;
+}
+
+.lpm-table th {
+	text-align: right;
+	padding: 8px 12px;
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.07em;
+	color: var(--lpm-text-dim);
+	font-weight: 600;
+	border-bottom: 1px solid var(--lpm-glass-border) !important;
+	white-space: nowrap;
+}
+
+.lpm-table td {
+	text-align: right;
+	padding: 10px 12px;
+	border-bottom: 1px solid rgba(124, 58, 237, 0.07) !important;
+	color: var(--lpm-text);
+	white-space: nowrap;
+}
+
+/* First column (Pair / Date) stays left-aligned */
+.lpm-table th:first-child,
+.lpm-table td:first-child {
+	text-align: left;
+}
+
+/* Status column — centre the badge */
+.lpm-table th:nth-child(6),
+.lpm-table td:nth-child(6) {
+	text-align: center;
+}
+
+.lpm-table tbody tr:last-child td {
+	border-bottom: none !important;
+}
+
+.lpm-table tbody tr:hover td {
+	background: rgba(124, 58, 237, 0.03) !important;
+}
+
+/* ---- Open Positions section ---- */
+.lpm-positions {
+	padding: 0;
+}
+
+.lpm-positions .lpm-section-title {
+	margin-top: 4px;
+}
+
+.lpm-section-title {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.lpm-count-badge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 22px;
+	height: 22px;
+	padding: 0 6px;
+	border-radius: 99px;
+	font-size: 12px;
+	font-weight: 700;
+	background: var(--lpm-gradient);
+	color: #fff;
+	-webkit-text-fill-color: #fff;
+}
+
+.lpm-token-pair {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	white-space: nowrap;
+}
+
+.lpm-token-logo {
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	object-fit: cover;
+	flex-shrink: 0;
+}
+
+.lpm-token-logo--second {
+	margin-left: -6px;
+	border: 1px solid rgba(255,255,255,0.6);
+}
+
+.lpm-strategy-chip {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 99px;
+	font-size: 11px;
+	font-weight: 600;
+	background: rgba(124, 58, 237, 0.1);
+	color: var(--lpm-purple);
+	white-space: nowrap;
+}
+
+.lpm-range-badge {
+	display: inline-block;
+	padding: 3px 8px;
+	border-radius: 99px;
+	font-size: 11px;
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+.lpm-range-badge--in {
+	background: rgba(5, 150, 105, 0.12);
+	color: var(--lpm-green);
+}
+
+.lpm-range-badge--out {
+	background: rgba(220, 38, 38, 0.1);
+	color: var(--lpm-red);
+}
+
+.lpm-sub-pct {
+	display: block;
+	font-size: 11px;
+	opacity: 0.75;
+	margin-top: 1px;
+}
+
+.lpm-empty {
+	color: var(--lpm-text-dim);
+	font-size: 14px;
+	margin: 0;
+}
+
+/* ---- Error state ---- */
+.lpm-error {
+	color: var(--lpm-red);
+	font-size: 14px;
+	font-weight: 500;
+	padding: 16px 20px;
+	border-color: rgba(248, 113, 113, 0.3);
+}
+
+/* ---- Responsive ---- */
+@media ( max-width: 640px ) {
+	.lpm-stats-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.lpm-stat-card__value {
+		font-size: 18px;
+	}
+
+	.lpm-overview__header {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}
+
+@media ( max-width: 400px ) {
+	.lpm-stats-grid {
+		grid-template-columns: 1fr;
+	}
+}
